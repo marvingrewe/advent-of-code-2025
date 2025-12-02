@@ -47,6 +47,8 @@ fun <T> List<T>.elementPairs(): Sequence<Pair<T, T>> = sequence {
     }
 }
 
+fun Int.divisors() = (1..this / 2).filter { this % it == 0 }.toList()
+
 val integers = generateSequence(0) {it + 1}
 
 typealias Point = Pair<Int, Int>
