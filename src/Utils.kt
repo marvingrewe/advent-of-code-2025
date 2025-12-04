@@ -30,6 +30,19 @@ fun List<String>.toIntLists(regex: Regex = Regex("\\s+")) = map { it.split(regex
 fun Iterable<String>.toIntLists(regex: Regex = Regex("\\s+")) = map { it.split(regex).map(String::toInt) }
 
 fun List<String>.isInBounds(row: Int, col: Int): Boolean = row in this.indices && col in this[row].indices
+fun List<String>.getNeighbors(row: Int, col: Int): List<Char> {
+    val neighbors = mutableListOf<Char>()
+    (-1..1).forEach { rowOffset ->
+        (-1..1).forEach { colOffset ->
+            if (!(rowOffset == 0 && colOffset == 0) && this.isInBounds(
+                    row + rowOffset,
+                    col + colOffset
+                )
+            ) neighbors.add(this[row + rowOffset][col + colOffset])
+        }
+    }
+    return neighbors
+}
 
 inline fun <T> Array<T>.indexOfPrevious(startIndex: Int, predicate: (T) -> Boolean): Int {
     for (index in startIndex downTo 0) {
@@ -49,7 +62,7 @@ fun <T> List<T>.elementPairs(): Sequence<Pair<T, T>> = sequence {
 
 fun Int.divisors() = (1..this / 2).filter { this % it == 0 }.toList()
 
-val integers = generateSequence(0) {it + 1}
+val integers = generateSequence(0) { it + 1 }
 
 typealias Point = Pair<Int, Int>
 
