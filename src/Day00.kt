@@ -3,11 +3,11 @@ import kotlin.time.measureTimedValue
 fun main() {
     val day = "Day00"
 
-    fun part1(input: List<String>): Int {
+    fun part1(input: List<String>): Number {
         return input.size
     }
 
-    fun part2(input: List<String>): Int {
+    fun part2(input: List<String>): Number {
         return input.size
     }
 
